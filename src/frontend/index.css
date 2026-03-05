@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Font Faces ─────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sora";
+  src: url("/assets/fonts/Sora-Variable.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Design Tokens ──────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Navy palette */
+    --background: 0.98 0 0;
+    --foreground: 0.13 0.02 263;
+    --card: 0.99 0 0;
+    --card-foreground: 0.13 0.02 263;
+    --popover: 0.99 0 0;
+    --popover-foreground: 0.13 0.02 263;
+
+    /* Primary: deep navy blue */
+    --primary: 0.24 0.08 260;
+    --primary-foreground: 0.99 0 0;
+
+    /* Secondary: warm light blue-gray */
+    --secondary: 0.94 0.015 250;
+    --secondary-foreground: 0.24 0.08 260;
+
+    /* Gold accent */
+    --accent: 0.72 0.16 70;
+    --accent-foreground: 0.13 0.02 263;
+
+    /* Muted: subtle background */
+    --muted: 0.955 0.01 250;
+    --muted-foreground: 0.45 0.04 263;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.9 0.015 250;
+    --input: 0.9 0.015 250;
+    --ring: 0.24 0.08 260;
+
+    /* Brand-specific tokens */
+    --navy: 0.17 0.06 263;
+    --navy-deep: 0.12 0.04 265;
+    --navy-mid: 0.24 0.08 260;
+    --gold: 0.72 0.16 70;
+    --gold-light: 0.84 0.12 80;
+
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+
+    --sidebar: 0.985 0 0;
+    --sidebar-foreground: 0.145 0 0;
+    --sidebar-primary: 0.205 0 0;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.97 0 0;
+    --sidebar-accent-foreground: 0.205 0 0;
+    --sidebar-border: 0.922 0 0;
+    --sidebar-ring: 0.708 0 0;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Sora", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+}
+
+/* ─── Utilities ──────────────────────────────────────────────────────────── */
+@layer utilities {
+  .text-navy {
+    color: oklch(var(--navy));
+  }
+  .text-navy-deep {
+    color: oklch(var(--navy-deep));
+  }
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+  .bg-navy {
+    background-color: oklch(var(--navy));
+  }
+  .bg-navy-deep {
+    background-color: oklch(var(--navy-deep));
+  }
+  .bg-gold {
+    background-color: oklch(var(--gold));
+  }
+  .border-gold {
+    border-color: oklch(var(--gold));
+  }
+  .border-navy {
+    border-color: oklch(var(--navy));
+  }
+
+  .gradient-hero {
+    background: linear-gradient(135deg, oklch(0.12 0.04 265) 0%, oklch(0.17 0.06 263) 50%, oklch(0.22 0.09 255) 100%);
+  }
+
+  .gradient-gold-shine {
+    background: linear-gradient(90deg, oklch(0.72 0.16 70) 0%, oklch(0.84 0.12 80) 50%, oklch(0.72 0.16 70) 100%);
+  }
+
+  .card-hover {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -8px oklch(0.17 0.06 263 / 0.18);
+  }
+
+  .section-divider {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+
+  .section-divider-reverse {
+    clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 100%);
+  }
+
+  .glass-card {
+    background: oklch(0.99 0 0 / 0.92);
+    backdrop-filter: blur(8px);
+    border: 1px solid oklch(0.9 0.015 250);
+  }
+
+  .nav-link-underline {
+    position: relative;
+  }
+  .nav-link-underline::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: oklch(var(--gold));
+    transition: width 0.25s ease;
+  }
+  .nav-link-underline:hover::after,
+  .nav-link-underline.active::after {
+    width: 100%;
+  }
+}
